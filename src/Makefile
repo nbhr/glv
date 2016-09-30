@@ -59,7 +59,7 @@ GLX_CXXFLAGS := -DGLV_USE_GLX
 OPT_CXXFLAGS   := -g -DGLV_DEBUG 
 
 # g++ section
-GPP_CXXFLAGS    := -I$(GL_INCLUDE_DIR) -Wall -Winline -Wmissing-prototypes -pedantic -Wno-long-long -pedantic-errors
+GPP_CXXFLAGS    := -I$(GL_INCLUDE_DIR) -Wall -Winline -pedantic -Wno-long-long -pedantic-errors
 GPP295_CXXFLAGS := $(GPP_CXXFLAGS) -DGLV_MISSING_LIMITS_HEADER_FILE 
 GPP3_CXXFLAGS   := $(GPP_CXXFLAGS)
 

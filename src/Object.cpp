@@ -1269,7 +1269,7 @@ void Object::addCommand(const std::string& pCommand,
       lNewObject->aName = pParameters;
 
       char lObjCommand[64];
-      sprintf(lObjCommand,"execute_subobjects_id %d", aSubObjects.size()-1);
+      sprintf(lObjCommand,"execute_subobjects_id %lu", aSubObjects.size()-1);
       aCommands.push_back(lObjCommand);
 
       pCurrentParser.pushObject(lNewObject);
@@ -2017,7 +2017,7 @@ PrimitiveAccumulator& Object::getCurrentPrimitiveAccumulator()
     aPrimitiveAccumulators.push_back(new PrimitiveAccumulator(true));
 
     char lCommand[64];
-    sprintf(lCommand, "execute_primitive_accumulator_id %d", aPrimitiveAccumulators.size()-1);
+    sprintf(lCommand, "execute_primitive_accumulator_id %lu", aPrimitiveAccumulators.size()-1);
     aCommands.push_back(lCommand);
 
     aNewPrimitiveAccumulatorNeeded = false;
@@ -2049,7 +2049,7 @@ VertexedPrimitiveAccumulator& Object::getCurrentVertexedPrimitiveAccumulator()
     aVertexedPrimitiveAccumulators.push_back(new VertexedPrimitiveAccumulator(getCurrentVertexAccumulator()));
 
     char lCommand[64];
-    sprintf(lCommand, "execute_vertex_primitive_accumulator_id %d", aVertexedPrimitiveAccumulators.size()-1);
+    sprintf(lCommand, "execute_vertex_primitive_accumulator_id %lu", aVertexedPrimitiveAccumulators.size()-1);
     aCommands.push_back(lCommand);
 
     aNewVertexedPrimitiveAccumulatorNeeded = false;
