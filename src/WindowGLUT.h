@@ -22,7 +22,7 @@
 #define WINDOWGLUT_H
 
 #include "WindowGLV.h"
-#include "glut.h"
+#include "GL/glut.h"
 
 // GLUT toolkit implementation of a opengl render window
 // Only one instance is permitted (see WindowGLV)

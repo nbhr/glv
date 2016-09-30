@@ -18,12 +18,12 @@
  *
  *****************************************************************************/
 
+
 #include "UserSettings.h"
-#include <stdio.h>
+#include <cstdio>
+#include <algorithm>
 #include "assert_glv.h"
 #include "limits_glv.h"
-
-#include <algorithm>
 
 // By default, distant light
 UserSettings::UserSettings()

@@ -26,7 +26,7 @@
 
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <glut.h>
+#include <GL/glut.h>
 
 #endif // GLINCLUDE_H
 

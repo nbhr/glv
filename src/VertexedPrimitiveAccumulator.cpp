@@ -24,7 +24,8 @@
 #include "PrimitiveAccumulator.h"
 #include <cmath>
 #include <iostream>
-#include <stdio.h>
+#include <cstdio>
+#include <limits>
 
 VertexedPrimitiveAccumulator::VertexedPrimitiveAccumulator(VertexAccumulator& pVertexes)
   : aBoundingBox                (),

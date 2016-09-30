@@ -22,10 +22,11 @@
 #include "assert_glv.h"
 #include "limits_glv.h"
 #include "Matrix4x4.h"
-#include <algorithm>
+
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 BoundingBox::BoundingBox()
   : aInitialized  (false),

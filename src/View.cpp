@@ -26,6 +26,7 @@
 #include "ViewManager.h"
 
 #include <stdio.h>
+#include <algorithm>
 
 const Vector3D View::aDefaultCenter              (0.0f, 0.0f, 0.0f);
 const Vector3D View::aDefaultDirection           (0.5f, sqrt(0.5), 0.5f);

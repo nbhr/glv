@@ -23,8 +23,8 @@
 
 // Auto-enable limits for visual c++
 #ifdef _MSC_VER
-#define GLV_MISSING_LIMITS_HEADER_FILE
-#define GLV_MISSING_STD_MIN_MAX
+//#define GLV_MISSING_LIMITS_HEADER_FILE
+//#define GLV_MISSING_STD_MIN_MAX
 #endif
 
 #ifdef GLV_MISSING_STD_MIN_MAX

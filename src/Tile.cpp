@@ -18,6 +18,8 @@
  *
 *****************************************************************************/
 
+#define _USE_MATH_DEFINES
+
 #include "Tile.h"
 #include "assert_glv.h"
 #include "glinclude.h"
