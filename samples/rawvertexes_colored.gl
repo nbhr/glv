@@ -1,0 +1,19 @@
+# We define 4 points
+raw_vertex
+0 0 0
+1 0 0
+0 1 0
+1 1 0
+raw_end
+# For each vertex, a color is given
+raw_color_v
+0 0 0
+1 0 0
+0 1 0
+1 1 0
+raw_end
+# We use the triangle_v primitive to use the points.  color information
+#  is implicitly used.
+triangle_v 0 1 2
+triangle_v 2 1 3
+

@@ -1,0 +1,40 @@
+This file gives information on how to compile "glv" from the source.
+
+***DEPENDENCY:  GLUT library
+
+Before building the application; make sure GLUT is installed on your system.
+
+Binaries or source-code distributions are available:
+Linux/Unixes: http://www.opengl.org/resources/libraries/glut/glut_downloads.html
+Windows: http://www.xmission.com/~nate/glut.html
+
+***LINUX/UNIXES
+
+  (To ensure a correct build, GLUT should be available in the system
+   include/library paths.  Or, copied in the src directory.)
+
+  Note to RedHat 9.0: users should not use the RPM provided in the
+      distribution as it is not working properly. 
+      See https://sourceforge.net/forum/message.php?msg_id=2047427
+      and https://sourceforge.net/forum/message.php?msg_id=2047596
+
+  Just do "make"
+  application "glv" is now compiled.
+
+
+***WINDOWS
+
+  Windows is a minor compatibility/test platform.  glv is not meant for windows.
+  (To ensure a correct build, add GLUT include/libraries in the paths of
+   visualC; or configure the project so that glut.h and glut32.lib are
+   used)
+  
+  VisualC++:
+    Create a new Console application project
+    Add all src/*.cpp files
+    Project->Settings->Link:  Add "opengl32.lib glu32.lib glut32.lib"
+    Make!
+
+  (At run time; glut32.dll must be available)
+
+

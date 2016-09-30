@@ -1,0 +1,336 @@
+ATTRIBUTES:
+
+glcolor R G B
+  (GL = glColor3f)
+  R,G,B = Color of the following drawn primitives.  Values ranging from 0 to 1
+     for example:  "glcolor 1 0 0" is pure red
+
+glpointsize SIZE
+  (GL = glPointSize)
+  SIZE = Radius, in pixels, of the drawn points, using the "point" primitive
+
+gllinewidth SIZE
+  (GL = glLineWidth)
+  SIZE = Width, in pixels, of the drawn lines, using the "line" primitive; or any other
+     primitive making use of lines.
+
+PRIMITIVES:
+
+point X Y Z
+  (GL = glBegin(GL_POINTS) + glVertex3f(X,Y,Z) + glEnd())
+  X,Y,Z = Position of the point drawn.  (Use glcolor and glpointsize to change attributes)
+
+point_colored X Y Z R G B
+  (GL = glBegin(GL_POINTS) + glColor(R*,G*,B*) + glVertex3f(X,Y,Z) + glEnd())
+  X,Y,Z = Position of the point drawn.  (Use glpointsize to change the attribute)
+  R,G,B = Color of the point. (Override any previous glcolor)        
+
+line X1 Y1 Z1 X2 Y2 Z2
+  (GL = glBegin(GL_LINES) + glVertex3f(X1,Y1,Z1) + glVertex3f(X2,Y2,Z2) + glEnd())
+  X1,Y1,Z1 and X2,Y2,Z2 = Coordinates of the extremities of the line. (use glcolor and gllinewidth to change attributes)
+
+line_colored X1 Y1 Z1 R1 G1 B1 X2 Y2 Z2 R2 G2 B2
+  (GL = glBegin(GL_LINES) + 2*(glColor(R*,G*,B*) + glVertex3f(X*,Y*,Z*)) + glEnd())
+  X*,Y*,Z* = Coordinates of the extremities of the line. (use gllinewidth to change the attribute)
+  R*,G*,B* = Color of extremities of the line. (Override any previous glcolor)
+
+arrow X1 Y1 Z1 X2 Y2 Z2 TIPPROP TIPPOLY
+  Same as "line X1 Y1 Z1 X2 Y2 Z2" but with a arrow tip at (X2,Y2,Z2)
+  TIPPROP = Proportion of the arrow length used for the tip (valid values are in the interval (0.0,1.0] )
+  TIPPOLY = Number of polygons used for the tip (valid values are 1,3,4,5,...)
+
+arrow_colored X1 Y1 Z1 R1 G1 B1 X2 Y2 Z2 R2 G2 B2 TIPPROP TIPPOLY
+  Same as "line_colored X1 Y1 Z1 R1 G1 B1 X2 Y2 Z2 R2 G2 B2" but with a arrow tip at (X2,Y2,Z2) of color (R2,G2,B2)
+  TIPPROP = Proportion of the arrow length used for the tip (valid values are in the interval (0.0,1.0] )
+  TIPPOLY = Number of polygons used for the tip (valid values are 1,3,4,5,...)
+
+triangle X1 Y1 Z1 X2 Y2 Z2 X3 Y3 Z3
+  (GL = glBegin(GL_TRIANGLES) + glNormal3f(computed) + 3*glVertex3f(X*,Y*,Z*) + glEnd())
+  X*,Y*,Z* = Coordinates of the drawn triangle.
+    The triangle normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the triangle to be correctly lighted.
+
+triangle_colored X1 Y1 Z1 R1 G1 B1 X2 Y2 Z2 R2 G2 B2 X3 Y3 Z3 R3 G3 B3
+  (GL = glBegin(GL_TRIANGLES) + glNormal3f(computed) + 3*(glColor(R*,G*,B*) + glVertex3f(X*,Y*,Z*)) + glEnd())
+  X*,Y*,Z* = Coordinates of the drawn triangle.
+  R*,G*,B* = Color of each coordinate of the triangle. (Override any previous glcolor)        
+    The triangle normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the triangle to be correctly lighted.
+
+quad X1 Y1 Z1 X2 Y2 Z2 X3 Y3 Z3 X4 Y4 Z4
+  (GL = glBegin(GL_QUADS) + glNormal3f(computed) + 4*glVertex3f(X*,Y*,Z*) + glEnd())
+  X*,Y*,Z* = Coordinates of the drawn quad.
+    The polygon normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the polygon to be correctly lighted.
+
+quad_colored X1 Y1 Z1 R1 G1 B1 X2 Y2 Z2 R2 G2 B2 X3 Y3 Z3 R3 G3 B3 X4 Y4 Z4 R4 G4 B4
+  (GL = glBegin(GL_QUADS) + glNormal3f(computed) + 4*(glColor(R*,G*,B*) + glVertex3f(X*,Y*,Z*)) + glEnd())
+  X*,Y*,Z* = Coordinates of the drawn quad.
+  R*,G*,B* = Color of each coordinate of the quad. (Override any previous glcolor)        
+    The polygon normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the polygon to be correctly lighted.
+
+RAW PRIMITIVES:
+  Equivalent of their "one-line" declaration; only the declaration syntax differ.
+
+raw_point
+x y z
+...
+raw_end
+  All the coordinates given between raw_point/raw_end are drawn as points.
+  X,Y,Z = Position of the point drawn.  (Use glcolor and glpointsize to change attributes)
+    
+raw_point_colored
+x y z r g b
+...
+raw_end
+  All the coordinates given between raw_point_colored/raw_end are drawn as colored points.
+  X,Y,Z = Position of the point drawn.  (Use glcolor and glpointsize to change attributes)
+  R,G,B = Color of the point. (Override any previous glcolor)        
+    
+raw_line
+x1 y1 z1 x2 y2 z2
+...
+raw_end
+  All the coordinate pairs given between raw_line/raw_end are drawn as lines.
+  X1,Y1,Z1 and X2,Y2,Z2 = Coordinates of the drawn line.  (use glcolor and gllinewidth to change attributes)
+
+raw_line_colored
+x1 y1 z1 r1 g1 b1 x2 y2 z2 r2 g2 b2
+...
+raw_end
+  All the coordinate pairs given between raw_line/raw_end are drawn as lines.
+  X*,Y*,Z* = Coordinates of the extremities of the line. (use gllinewidth to change the attribute)
+  R*,G*,B* = Color of extremities of the line. (Override any previous glcolor)
+
+raw_arrow TIPPROP TIPPOLY
+x1 y1 z1 x2 y2 z2
+...
+raw_end
+  Same as "raw_line " but with a arrow tip at (x2,y2,z2)
+  TIPPROP = Proportion of the arrow length used for the tip (valid values are in the interval (0.0,1.0] )
+  TIPPOLY = Number of polygons used for the tip (valid values are 1,3,4,5,...)
+
+raw_arrow_colored TIPPROP TIPPOLY
+x1 y1 z1 r1 g1 b1 x2 y2 z2 r2 g2 b2 rt gt bt
+...
+raw_end
+  Same as "raw_line_colored" but with a arrow tip at (x2,y2,z2) of color (r2,g2,b2)
+  TIPPROP = Proportion of the arrow length used for the tip (valid values are in the interval (0.0,1.0] )
+  TIPPOLY = Number of polygons used for the tip (valid values are 1,3,4,5,...)
+
+raw_triangle
+x1 y1 z1 x2 y2 z2 x3 y3 z3
+...
+raw_end
+  All the coordinate tuples given between raw_triangle/raw_end are draw as triangles
+  X*,Y*,Z* = Coordinates of the drawn triangle.
+    The triangle normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the triangle to be correctly lighted.
+
+raw_triangle_colored
+x1 y1 z1 r1 g1 b1 x2 y2 z2 r2 g2 b2 x3 y3 z3 r3 g3 b3
+...
+raw_end
+  All the coordinate tuples given between raw_triangle/raw_end are draw as colored triangles
+  X*,Y*,Z* = Coordinates of the drawn triangle.
+  R*,G*,B* = Color of each coordinate of the triangle. (Override any previous glcolor)        
+    The triangle normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the triangle to be correctly lighted.
+
+raw_quad
+x1 y1 z1 x2 y2 z2 x3 y3 z3 x4 y4 z4
+...
+raw_end
+  All the coordinate tuples given between raw_quad/raw_end are draw as quads
+  X*,Y*,Z* = Coordinates of the drawn quad.
+    The quad normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the quad to be correctly lighted.
+
+raw_quad_colored
+x1 y1 z1 r1 g1 b1 x2 y2 z2 r2 g2 b2 x3 y3 z3 r3 g3 b3 x4 y4 z4 r4 g4 b4 
+...
+raw_end
+  All the coordinate tuples given between raw_quad/raw_end are draw as colored quads
+  X*,Y*,Z* = Coordinates of the drawn quad.
+  R*,G*,B* = Color of each coordinate of the quad. (Override any previous glcolor)        
+    The quad normal is computed by the parser.  Specify the coordinates in right handed order,
+    in order for the quad to be correctly lighted.
+
+GLUT PRIMITIVES:
+
+glutwirecube X Y Z SIZE
+  (GL = glTranslatef(X,Y,Z) + glutWireCube(SIZE))
+  X,Y,Z = Position of the cube
+  SIZE = Size of the cube
+    The cube is drawn in wireframe using the current line width and drawing color.
+
+glutsolidcube X Y Z SIZE
+  (GL = glTranslatef(X,Y,Z) + glutSolidCube(SIZE))
+  X,Y,Z = Position of the cube
+  SIZE = Size of the cube
+    The cube is drawn with facets, using the current drawing color.
+
+glutsolidsphere X Y Z SIZE
+  (GL = glTranslatef(X,Y,Z) + glutSolidSphere(SIZE,20,20))
+  X,Y,Z = Position of the sphere
+  SIZE = Size of the sphere
+    The sphere is drawn with a polygon approximation, using the current drawing color.
+
+text X Y Z FONT "text"
+  (GL = glutBitmapCharacter(...))
+  X,Y,Z = Position of the text
+  FONT = fixed13,fixed15,times10,times24,helvetica10,helvetica12,helvetica18
+  "text" = Between quotes; the text to render
+
+VERTEX ARRAY PRIMITIVES:
+
+raw_vertex
+  X Y Z
+  X Y Z
+  ...
+raw_end
+  (GL = no effect)
+  Accumulate the vertexes in the array.  First vertex accumulated has ID = 0.
+  This is cumulative with other raw_vertex calls.
+  
+clear_vertex
+  (GL = no effect)
+  Clear the list of vertexes accumulated with raw_vertex.
+  This is implicit when declaring a new object (obj_begin)
+
+VERTEX-BASED POLYGON PRIMITIVES:
+   All vertex array primitives use a suffix "_v"; and use the currently defined
+    vertex array (accumulated by using raw_vertex, or vertex command)
+   IMPORTANT:  vertexes indices starts at ZERO.
+   Hint:  You could add a dummy first vertex (vertex 0 0 0) if your indices starts at 1
+
+raw_color_v
+  R G B
+  R G B
+  ...
+raw_end
+  (GL = no effect)
+  Accumulate the colors in the array.  If specified; this color data is used for
+  the vertex-based primitives coloring.
+
+raw_triangle_v
+  PT0 PT1 PT2
+  PT0 PT1 PT2
+  ...
+raw_end
+  (GL = glBegin(GL_TRIANGLES) + N*3*glVertex3f(vertexes[PT*]) + glEnd())
+  PT* = Index of the coordinates in the raw_vertex section.  There are as many triangles as given vertices tuples.
+    SPECIAL:  If the command-line parameter "-smooth" is given; this primitive will
+      smooth the normals of adjacent triangles; giving a smooth surface. If not specified;
+      each triangle is visible as an individual facet; when using distinctive lighting.
+
+raw_quad_v
+  PT0 PT1 PT2 PT3
+  PT0 PT1 PT2 PT3
+  ...
+raw_end
+  (GL = glBegin(GL_QUADS) + N*4*glVertex3f(vertexes[PT*]) + glEnd())
+  PT* = Index of the coordinates in the raw_vertex section.  There are as many polygons as given vertices tuples.
+
+raw_point_v
+  PT
+  ...
+raw_end
+  (GL = glBegin(GL_POINTS) + N*glVertex3f(vertexes[PT*]) + glEnd())
+  PT = Index of the point coordinates in the raw_vertex section.  There are as many points as given indexes.
+  
+raw_line_v
+  PT0 PT1
+  ...
+raw_end
+  (GL = glBegin(GL_LINES) + N*2*glVertex3f(vertexes[PT*]) + glEnd())
+  PT* = Index of the coordinates in the raw_vertex section.  There are as many lines as given vertices tuples.
+
+point_v PT
+  Definition of only one point using the vertex coordinates
+
+line_v PT0 PT1
+  Definition of only one line using the vertex coordinates
+
+triangle_v PT0 PT1 PT2
+  Definition of only one triangle using the vertex coordinates
+
+quad_v PT0 PT1 PT2 PT3
+  Definition of only one quad using the vertex coordinates
+
+OBJECT COMMANDS:
+
+object_begin [OBJECTNAME]
+  (GL = Will specify the start of a display list)
+  Declare the start of a displayable object.  This is implicit with the start of a file
+  OBJECTNAME = optional name for the object. Can be used for later execute_object and
+  delete_object commands.  If not given, Object1,Object2,Object3... is generated
+  vertex/raw_vertex declarations are local to an object; and cannot be declared global
+  and used in an object.
+
+object_end
+  (GL = Will specify the end of a display list)
+  Declare the end of a displayable object.  This is implicit with a end-of-file
+
+execute_object OBJECTNAME
+  (GL = Call the display list)
+  Execute the commands recorded in a previous object_begin OBJECTNAME ... object_end
+
+delete_object OBJECTNAME
+  (GL = Remove the display list)
+  Delete the object from the graphical memory.  After this, any call to OBJECTNAME
+  is void (but wont produce an execution error)
+        
+GENERAL DRAWING SETTINGS
+
+draw_double_sided / draw_single_sided
+  In sigle-side drawing mode; polygons seen from the back side are invisible.
+  single-sided drawing is faster; as invisible (back-facing) polygons arent computed by openGL.
+
+glenable_polygonoffset_fill / gldisable_polygonoffset_fill
+  (GL = glEnable(GL_POLYGONOFFSET_FILL); + glPolygonOffset(1,1);)
+  Enable the "polygon offset" drawing technique. This permits to draw lines onto edges
+  of polygons, without the lines beign "dashed" by the superposition of the polygon onto
+  the line.  This produce cleaner output for wireframe grids superposed to facets grids.
+  (See openGL documentation for mor info on this subject)
+
+draw_facetboundary_enable R G B
+  When drawing polygon primitives; a wireframe boundary is drawn in the specified
+  R,G,B color.
+  This incurs an implicit glenable_polygonoffset_fill.
+  Performance warning:  Lots of different "triangle"/"quad" primitives will be slower
+  to render when this mode is activated.  Using a raw_triangle_v is much faster, as
+  the wireframe boundaries are drawn in one shot, after the polygons.
+
+draw_facetboundary_disable
+  Disable the wireframe boundary mode
+
+GENERAL COMMANDS:
+
+include FILENAME
+  Read the given filename.  If the filename is relative; the directory is the same than the
+  source file directory.
+
+title TEXT
+  Add a title in the 3d window
+
+snapshot <WIDTH>x<HEIGHT> FILENAME.EXT
+  Creates a WIDTH by HEIGHT image stored in FILENAME.EXT. 
+  The image file format is given by EXT
+  Currently, only the PNG format is supported
+
+exit
+  Exit the application 
+
+quit
+  Exit the application 
+
+OTHER OPENGL COMMANDS:
+
+  glbegin_triangles = glBegin(GL_TRIANGLES);
+  glbegin_lines = glBegin(GL_LINES);
+  glbegin_points = glBegin(GL_POINTS);
+  glvertex x y z = glVertex3f(x,y,z);
+  glend = glEnd();
+

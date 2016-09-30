@@ -1,0 +1,34 @@
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+=======================================
+
+Check project homepage for "maybe" up-to-date overview and documentation:
+http://glv.sourceforge.net/
+
+Overview:
+This program permit to view 3D data easily from the command-line.
+
+View INSTALL text for compilation instructions.
+
+==== Directory structure ==============
+
+src/    : Source files; to build "glv" application
+filters/: Input filters; can be used in combination with glv
+samples/: Small sample files.  Larger examples can be found on the website
+                                                                
+==== Programmers/contact ==============
+
+Patrick Lagace ( bl4cklight@users.sourceforge.net )
+

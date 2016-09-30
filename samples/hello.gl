@@ -1,0 +1,37 @@
+
+# Some basic GLUT primitives
+glcolor 1 0 0
+glutsolidsphere -1 0 0 0.3
+glcolor 0 1 0
+glutsolidsphere 0 1 0 0.3
+glcolor 0 0 1
+glutsolidsphere 0 0 1 0.3
+glcolor 1 0 1
+glutsolidsphere 0.4 -0.4 -0.4 0.3
+
+# A point
+glpointsize 2
+glcolor 1 1 1
+point 0 0 0
+
+# A wireframe tetrahedron, making use of a vertex array
+glcolor 0.4 0.4 0
+gllinewidth 3
+raw_vertex
+-1 0 0
+0 1 0
+0 0 1
+0.4 -0.4 -0.4
+raw_end
+raw_line_v
+0 1
+0 2
+0 3
+1 2
+1 3
+2 3
+raw_end
+
+glcolor 1 1 1
+# Some text, at position 0 0 0
+text 0 0 0 times24 " Hello 3d world ;-)"
